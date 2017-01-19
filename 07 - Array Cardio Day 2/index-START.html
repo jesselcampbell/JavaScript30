@@ -45,7 +45,7 @@
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
-    // find the comment with the ID of 823423
+    // Find the comment with the ID of 823423
     const matchID = comments.find(comment => comment.id === 823423);
     console.log({matchID});
 
@@ -55,6 +55,7 @@
     // comments.splice(index, 1);
 
     // Creating a new array out of all entries except index
+    // The `...` spreads the array created by .slice() into objects within this array
     const newComments = [
       ...comments.slice(0, index),
       ...comments.slice(index + 1)
