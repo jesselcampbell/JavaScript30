@@ -104,6 +104,35 @@
   </div>
 
 <script>
+
+const checkboxes = document.querySelectorAll('.inbox input[type = "checkbox"]');
+let lastClicked;
+let inBetween = false;
+
+function handleCheck(e) {
+  // Check if they have the shift key down
+  // And check if they are checking the box (not unchecking)
+  if (e.shiftKey) {
+    // Determine which checkboxes are in between the first and last checked
+    checkboxes.forEach(checkbox => {
+      if (checkbox === this || checkbox === lastClicked) {
+        inBetween = !inBetween;
+      }
+      // If checkbox is being checked, check the in betweens
+      // If it's being unchecked, uncheck the in betweens
+      if (this.checked && inBetween) {
+        checkbox.checked = true;
+      } else if (!this.checked && inBetween) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  // Set this as the previously clicked box
+  lastClicked = this;
+}
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
 </script>
 </body>
 </html>
